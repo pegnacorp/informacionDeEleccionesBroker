@@ -1,0 +1,6 @@
+<config>
+	<datasource-name>IRIS</datasource-name>
+	<ipaddress>9.124.74.85</ipaddress>
+	<logfilename>filename.txt</logfilename>
+	<appender>yes</appender>
+</config>
