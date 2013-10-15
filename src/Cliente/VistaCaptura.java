@@ -21,25 +21,24 @@ public class VistaCaptura extends javax.swing.JFrame {
     private Candidato candidato1;
     private Candidato candidato2;
     private ArrayList<Candidato> candidatos;
-    private ProxyCliente proxyClientes ;
+    private ProxyCliente proxyClientes;
 
     public VistaCaptura() {
         initComponents();
-         proxyClientes = new ProxyCliente();
          //Inicialización, revisar 
+        proxyClientes = new ProxyCliente();
         candidatos = new ArrayList<Candidato>();
+        
         //Código de prueba
         candidato1 = new Candidato("Maximiliano de Hadsburgo", "Conservadores");
         candidato2 = new Candidato("Benito Juárez", "Liberales");
         candidatos.add(candidato1);
         candidatos.add(candidato2);
         
-
-        
         for (int i = 0; i < candidatos.size(); i++) {
             opcionarioCandidatos.addItem(candidatos.get(i).getNombre());
-        }
-        
+       }
+     
 
     }
 
