@@ -10,6 +10,7 @@
  */
 package Cliente;
 
+import Servidor.Candidato;
 import java.util.ArrayList;
 
 /**

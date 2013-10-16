@@ -1,4 +1,5 @@
 package Cliente;
+import Servidor.Candidato;
 import Servidor.*;
 
 import com.thoughtworks.xstream.*;

@@ -1,6 +1,5 @@
 package Servidor;
 
-import Cliente.Candidato;
 import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.util.ArrayList;
