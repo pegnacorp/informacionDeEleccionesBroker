@@ -40,6 +40,10 @@ public class Broker {
         clientThread.start();
     }
     
+    public void processRequest(String xmlObject, int action){
+        
+    }
+    
     
     /*
      * outputs the available server instructions
