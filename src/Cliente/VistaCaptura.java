@@ -11,7 +11,11 @@
 package Cliente;
 
 import Servidor.Candidato;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +28,7 @@ public class VistaCaptura extends javax.swing.JFrame {
     private ArrayList<Candidato> candidatos;
     private ProxyCliente proxyClientes;
 
-    public VistaCaptura() {
+    public VistaCaptura() throws UnknownHostException, IOException {
         initComponents();
          //Inicialización, revisar 
         proxyClientes = new ProxyCliente();
@@ -98,7 +102,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     proxyClientes.recibirMensaje(procesarOpcion());
     proxyClientes .empaquetarDatos();
-    proxyClientes .enviarMensaje();
+        try {
+            proxyClientes .enviarMensaje();
+        } catch (IOException ex) {
+            Logger.getLogger(VistaCaptura.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
 /**Sirve para tomar la opción elegida en String y regresarla en tipo Candidato*/
@@ -144,7 +152,13 @@ private Candidato procesarOpcion(){
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new VistaCaptura().setVisible(true);
+                try {
+                    new VistaCaptura().setVisible(true);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(VistaCaptura.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(VistaCaptura.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
