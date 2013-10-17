@@ -2,13 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package socket;
+package Servidor;
 
+import socket.*;
 import java.io.*;
 import java.net.*;
 
 public class ServidorTCP {
 
+    public void recibirMensaje(){
+        
+    }
+    public void enviarMensaje(){
+        
+        
+    }
     public static void main(String argv[]) throws Exception {
         String clientSentence;
         String capitalizedSentence;
@@ -24,15 +32,11 @@ public class ServidorTCP {
             DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 
             clientSentence = inFromClient.readLine();
-            System.out.println("Pruebas");
-            System.out.println(clientSentence);
             
 
 //            capitalizedSentence = clientSentence.toUpperCase() + '\n';
 //
 //            outToClient.writeBytes(capitalizedSentence);
-            
-            
         }
     }
 }

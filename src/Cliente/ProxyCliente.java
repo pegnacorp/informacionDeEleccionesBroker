@@ -3,15 +3,19 @@ import Servidor.*;
 
 import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class ProxyCliente {
 
     private Candidato candidato;
     private String mensaje;
     private ProxyServidor proxyServidor;
-
-    public ProxyCliente() {
+    private ClienteTCP  clientetcp;
+    
+    public ProxyCliente() throws UnknownHostException, IOException {
         proxyServidor = new ProxyServidor();
+        clientetcp = new ClienteTCP();
     }
     public void recibirMensaje(Candidato candidato){
         this.candidato = candidato;
@@ -32,9 +36,9 @@ public class ProxyCliente {
     /**Método que enviará el mensaje al servidor 
      
      */
-    public void enviarMensaje(){
-        
+    public void enviarMensaje() throws IOException{
         proxyServidor.recibirMensaje(mensaje);
+        clientetcp.enviarMensaje(mensaje);
     }
 
 }
