@@ -16,13 +16,13 @@ public class ProcessClient implements Runnable{
     Cliente cliente;
     public ProcessClient(Cliente cliente){
         this.cliente = cliente;
-        
+//        start();
     }
     
     @Override
     public void run() {
 //        throw new UnsupportedOperationException("Not supported yet.");
-        System.out.println("wait for actions :D");
+//        System.out.println("wait for actions :D");
     }
     
     
