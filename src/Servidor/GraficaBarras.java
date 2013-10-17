@@ -11,7 +11,6 @@
 package Servidor;
 
 
-import Cliente.Candidato;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
