@@ -7,6 +7,7 @@ package Cliente;
 import socket.*;
 import java.io.*;
 import java.net.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +18,25 @@ public class ClienteTCP {
     /**
      * @param args the command line arguments
      */
-     private Socket clientSocket;
+    
     public ClienteTCP() throws UnknownHostException, IOException{
         
-         clientSocket = new Socket("localhost", 6789);
+         
     }
     
     public void enviarMensaje(String mensaje) throws IOException{
+        System.out.println("enviado");
+        try{
+        Socket clientSocket = new Socket("localhost", 6789);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-         outToServer.writeBytes(mensaje + '\n');
+           
+         outToServer.writeUTF(mensaje);
+         clientSocket.close();
+         
+         
+        }catch(Exception excepcion){
+            JOptionPane.showMessageDialog(null, "Mensaje Cliente" + excepcion.getMessage());
+        }
     }
     
     public void recibirMensaje(){

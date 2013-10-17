@@ -103,9 +103,9 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     proxyClientes.recibirMensaje(procesarOpcion());
     proxyClientes .empaquetarDatos();
         try {
-            proxyClientes .enviarMensaje();
+            proxyClientes.enviarMensaje();
         } catch (IOException ex) {
-            Logger.getLogger(VistaCaptura.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 

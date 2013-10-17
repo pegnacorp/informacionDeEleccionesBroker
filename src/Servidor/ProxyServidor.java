@@ -8,7 +8,6 @@ public class ProxyServidor {
 
     private String mensaje;
     private XStream xStream = new XStream(new DomDriver());
-    
     private ControaladorServidor control;
     private GraficaBarras graficaBarras;
 
@@ -22,23 +21,27 @@ public class ProxyServidor {
         this.mensaje = mensaje;
         convertirMensaje(mensaje);
 
-//        System.out.println(xStream.toXML(mensaje)); Cóidgo para imprimirlo en xml
 
     }
 
     //Revisar la entrada de la variable
     public void convertirMensaje(String mensaje) {
-        Candidato candidato;
+        String mensajeRecibido;
+//        Candidato candidato;
         ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
-        candidato = (Candidato) xStream.fromXML(mensaje);
+        mensajeRecibido = xStream.toXML(mensaje);
+       
+//        Error de la conversión de xml a clase
+         System.out.println((Candidato)xStream.fromXML(mensajeRecibido));
+//        (Candidato)xStream.fromXML(mensajeRecibido);
 
 
         //Enviar a la vista
+//
+//        control.contabilizarVoto(candidato);
+//        candidatos = control.darVotosContabilizados();
+//        graficaBarras.actualizar(candidatos);
 
-        control.contabilizarVoto(candidato);
-        candidatos = control.darVotosContabilizados();
-        graficaBarras.actualizar(candidatos);
-        
 
 
 

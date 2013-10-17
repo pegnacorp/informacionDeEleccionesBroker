@@ -14,7 +14,7 @@ public class ControaladorServidor {
 
     private ArrayList<Candidato> candidatos;
     private ContabilizadorDeVotos contabilizadorDeVotos;
-    private GraficaBarras graficaBarras;
+    
 
     public ControaladorServidor() {
         candidatos = new ArrayList<Candidato>();
