@@ -7,32 +7,52 @@ package Servidor;
 import socket.*;
 import java.io.*;
 import java.net.*;
+import javax.swing.JOptionPane;
 
 public class ServidorTCP {
 
-    public void recibirMensaje(){
-        
-    }
-    public void enviarMensaje(){
-        
-        
-    }
-    public static void main(String argv[]) throws Exception {
-        String clientSentence;
-        String capitalizedSentence;
+    private String mensajeRecibido;
+    private ProxyServidor proxyServidor;
+    private ServerSocket welcomeSocket;
 
-        ServerSocket welcomeSocket = new ServerSocket(6789);
+    public ServidorTCP() throws IOException {
+        proxyServidor = new ProxyServidor();
+        welcomeSocket = new ServerSocket(6789);
+    }
+
+    public void recibirMensaje() {
+        try {
+            System.out.println("recibido");
+            Socket conexionSocket = welcomeSocket.accept();
+            BufferedReader entradaServidor = new BufferedReader(new InputStreamReader(conexionSocket.getInputStream()));
+            while ((mensajeRecibido = entradaServidor.readLine()) != null) {
+                System.out.println(mensajeRecibido);
+            }
+
+
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
+        }
+    }
+
+    public void enviarMensaje() {
+    }
+
+    public void llamarAlServicio() throws FileNotFoundException {
+        //revisar si va aquí proxyServidor
+
+        proxyServidor.recibirMensaje(mensajeRecibido);
+
+    }
+
+    public static void main(String argv[]) throws Exception {
+        ServidorTCP servidorTCP = new ServidorTCP();
+       
+
 
         while (true) {
-
-            Socket connectionSocket = welcomeSocket.accept();
-
-            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-
-            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-
-            clientSentence = inFromClient.readLine();
-            
+            servidorTCP.recibirMensaje();
+            servidorTCP.llamarAlServicio();
 
 //            capitalizedSentence = clientSentence.toUpperCase() + '\n';
 //

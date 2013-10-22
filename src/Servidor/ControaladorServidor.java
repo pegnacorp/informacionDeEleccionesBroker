@@ -14,12 +14,12 @@ public class ControaladorServidor {
 
     private ArrayList<Candidato> candidatos;
     private ContabilizadorDeVotos contabilizadorDeVotos;
-    private GraficaBarras graficaBarras;
+    
 
     public ControaladorServidor() {
         candidatos = new ArrayList<Candidato>();
         Candidato candidato1 = new Candidato("Maximiliano de Hadsburgo", "Conservadores");
-        Candidato candidato2 = new Candidato("Benito Juárez", "Liberales");
+        Candidato candidato2 = new Candidato("Benito Juarez", "Liberales");
         candidatos.add(candidato1);
         candidatos.add(candidato2);
         contabilizadorDeVotos = new ContabilizadorDeVotos(candidatos);

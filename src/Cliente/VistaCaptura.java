@@ -36,7 +36,7 @@ public class VistaCaptura extends javax.swing.JFrame {
         
         //Código de prueba
         candidato1 = new Candidato("Maximiliano de Hadsburgo", "Conservadores");
-        candidato2 = new Candidato("Benito Juárez", "Liberales");
+        candidato2 = new Candidato("Benito Juarez", "Liberales");
         candidatos.add(candidato1);
         candidatos.add(candidato2);
         
@@ -103,9 +103,9 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     proxyClientes.recibirMensaje(procesarOpcion());
     proxyClientes .empaquetarDatos();
         try {
-            proxyClientes .enviarMensaje();
+            proxyClientes.enviarMensaje();
         } catch (IOException ex) {
-            Logger.getLogger(VistaCaptura.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 
