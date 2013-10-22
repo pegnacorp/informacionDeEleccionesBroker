@@ -21,8 +21,10 @@ public class ProcessClient implements Runnable{
     
     @Override
     public void run() {
-//        throw new UnsupportedOperationException("Not supported yet.");
-//        System.out.println("wait for actions :D");
+        while(true){
+            System.out.println(cliente);
+        }
+    
     }
     
     

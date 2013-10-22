@@ -23,15 +23,15 @@ public class Broker {
     private Socket inSocket;
     
     public Broker(){
-        try {
-            inSocket = new Socket("192.168.0.1", 123);//listening address and port
-            outSocket = new Socket("192.168.0.1", 123);//server address and listening port
-            processors = new ArrayList<Thread>();
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            inSocket = new Socket("192.168.0.1", 123);//listening address and port
+//            outSocket = new Socket("192.168.0.1", 123);//server address and listening port
+//            processors = new ArrayList<Thread>();
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
     public void createClientSocket(Cliente cliente){
@@ -41,7 +41,12 @@ public class Broker {
     }
     
     public void processRequest(String xmlObject, int action){
-        
+     switch(action){
+         case 1:
+//            agregardDatos();
+            break;
+             
+     }
     }
     
     
@@ -54,7 +59,9 @@ public class Broker {
     
     public static void main(String[] args) {
         Broker b = new Broker();
+        Broker a = new Broker();
         b.createClientSocket(new Cliente());
+        a.createClientSocket(new Cliente());
 //        System.out.println("hi");
     }
 }
