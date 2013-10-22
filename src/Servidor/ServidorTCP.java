@@ -38,7 +38,7 @@ public class ServidorTCP {
     public void enviarMensaje() {
     }
 
-    public void llamarAlServicio() throws FileNotFoundException {
+    public void llamarAlServicio() throws FileNotFoundException, IOException {
         //revisar si va aquí proxyServidor
 
         proxyServidor.recibirMensaje(mensajeRecibido);

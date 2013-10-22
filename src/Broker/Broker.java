@@ -43,9 +43,11 @@ public class Broker {
     public void processRequest(String xmlObject, int action){
      switch(action){
          case 1:
-//            agregardDatos();
+//            agregardVoto(xmlObject);
             break;
-             
+         case 2:
+//             return obtenerDatos();
+             break;
      }
     }
     
