@@ -1,4 +1,5 @@
 package Cliente;
+
 import Servidor.Candidato;
 import Servidor.*;
 
@@ -12,34 +13,38 @@ public class ProxyCliente {
     private Candidato candidato;
     private String mensaje;
     private ProxyServidor proxyServidor;
-    private ClienteTCP  clientetcp;
-    
+    private ClienteTCP clientetcp;
+
     public ProxyCliente() throws UnknownHostException, IOException {
         proxyServidor = new ProxyServidor();
         clientetcp = new ClienteTCP();
     }
-    public void recibirMensaje(Candidato candidato){
+
+    public void recibirMensaje(Candidato candidato) {
         this.candidato = candidato;
-        
+
     }
 
-
-    /**Método que traducirá lo enviado en un xml*/
+    /**
+     * Método que traducirá lo enviado en un xml
+     */
     public void empaquetarDatos() {
         XStream xStream = new XStream(new DomDriver());
         mensaje = xStream.toXML(candidato);
-        System.out.println("Xml " + mensaje);
-        
-    }
-    /**Método que traducirá lo recibido en una clase*/
-    public void desempaquetarDatos(){
-        
-    }
-    /**Método que enviará el mensaje al servidor 
-     
-     */
-    public void enviarMensaje() throws IOException{
-        clientetcp.enviarMensaje(mensaje);
+        System.out.println(mensaje);
+
     }
 
+    /**
+     * Método que traducirá lo recibido en una clase
+     */
+    public void desempaquetarDatos() {
+    }
+
+    /**
+     * Método que enviará el mensaje al servidor      *
+     */
+    public void enviarMensaje() throws IOException {
+        clientetcp.enviarMensaje(mensaje);
+    }
 }

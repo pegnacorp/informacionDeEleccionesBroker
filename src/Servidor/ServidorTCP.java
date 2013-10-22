@@ -20,16 +20,16 @@ public class ServidorTCP {
         welcomeSocket = new ServerSocket(6789);
     }
 
-    public void recibirMensaje(){
+    public void recibirMensaje() {
         try {
             System.out.println("recibido");
             Socket conexionSocket = welcomeSocket.accept();
             BufferedReader entradaServidor = new BufferedReader(new InputStreamReader(conexionSocket.getInputStream()));
-            while((mensajeRecibido = entradaServidor.readLine()) != null){
+            while ((mensajeRecibido = entradaServidor.readLine()) != null) {
                 System.out.println(mensajeRecibido);
             }
-            
-            
+
+
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
         }
@@ -38,16 +38,16 @@ public class ServidorTCP {
     public void enviarMensaje() {
     }
 
-    public void llamarAlServicio() {
+    public void llamarAlServicio() throws FileNotFoundException {
         //revisar si va aquí proxyServidor
-        
+
         proxyServidor.recibirMensaje(mensajeRecibido);
-        
+
     }
 
     public static void main(String argv[]) throws Exception {
         ServidorTCP servidorTCP = new ServidorTCP();
-
+       
 
 
         while (true) {

@@ -36,7 +36,7 @@ public class VistaCaptura extends javax.swing.JFrame {
         
         //Código de prueba
         candidato1 = new Candidato("Maximiliano de Hadsburgo", "Conservadores");
-        candidato2 = new Candidato("Benito Juárez", "Liberales");
+        candidato2 = new Candidato("Benito Juarez", "Liberales");
         candidatos.add(candidato1);
         candidatos.add(candidato2);
         
