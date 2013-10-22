@@ -30,6 +30,7 @@ public class ProxyCliente {
      */
     public void empaquetarDatos() {
         XStream xStream = new XStream(new DomDriver());
+        xStream.alias("candidato", Candidato.class);
         mensaje = xStream.toXML(candidato);
         System.out.println(mensaje);
 
@@ -42,7 +43,7 @@ public class ProxyCliente {
     }
 
     /**
-     * Método que enviará el mensaje al servidor      *
+     * Método que enviará el mensaje al servidor *
      */
     public void enviarMensaje() throws IOException {
         clientetcp.enviarMensaje(mensaje);

@@ -24,11 +24,9 @@ public class ServidorTCP {
         try {
             System.out.println("recibido");
             Socket conexionSocket = welcomeSocket.accept();
-            BufferedReader entradaServidor = new BufferedReader(new InputStreamReader(conexionSocket.getInputStream()));
-            while ((mensajeRecibido = entradaServidor.readLine()) != null) {
-                System.out.println(mensajeRecibido);
-            }
-
+            DataInputStream recibido = new DataInputStream(conexionSocket.getInputStream());
+            mensajeRecibido = recibido.readUTF();
+            System.out.println("Mensaje Recibido");
 
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
