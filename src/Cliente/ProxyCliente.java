@@ -16,7 +16,7 @@ public class ProxyCliente {
     private ClienteTCP clientetcp;
 
     public ProxyCliente() throws UnknownHostException, IOException {
-        proxyServidor = new ProxyServidor();
+        
         clientetcp = new ClienteTCP();
     }
 

@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servidor;
+package Broker;
 
-import socket.*;
+
 import java.io.*;
 import java.net.*;
 import javax.swing.JOptionPane;
@@ -12,12 +12,11 @@ import javax.swing.JOptionPane;
 public class ServidorTCP {
 
     private String mensajeRecibido;
-    private ProxyServidor proxyServidor;
     private ServerSocket welcomeSocket;
+   
 
     public ServidorTCP() throws IOException {
-        proxyServidor = new ProxyServidor();
-        welcomeSocket = new ServerSocket(5000);
+       welcomeSocket = new ServerSocket(6789);
     }
 
     public void recibirMensaje() {
@@ -26,20 +25,23 @@ public class ServidorTCP {
             Socket conexionSocket = welcomeSocket.accept();
             DataInputStream recibido = new DataInputStream(conexionSocket.getInputStream());
             mensajeRecibido = recibido.readUTF();
-            System.out.println("Mensaje Recibido");
+            System.out.println("Mensaje Recibido en el broker");
 
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
         }
     }
 
-    public void enviarMensaje() {
+    //Revisarsi va aquí
+    public void enviarMensaje() throws UnknownHostException, IOException {
+        ClienteTCP cliente = new ClienteTCP();
+        cliente.enviarMensaje(mensajeRecibido);
+        
     }
 
     public void llamarAlServicio() throws FileNotFoundException, IOException {
         //revisar si va aquí proxyServidor
 
-        proxyServidor.recibirMensaje(mensajeRecibido);
 
     }
 
@@ -50,7 +52,7 @@ public class ServidorTCP {
 
         while (true) {
             servidorTCP.recibirMensaje();
-            servidorTCP.llamarAlServicio();
+            servidorTCP.enviarMensaje();
 
 //            capitalizedSentence = clientSentence.toUpperCase() + '\n';
 //
