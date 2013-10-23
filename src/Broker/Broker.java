@@ -19,19 +19,12 @@ import java.util.logging.Logger;
  */
 public class Broker {
     private ArrayList<Thread> processors;
-    private Socket outSocket;
-    private Socket inSocket;
+    private ServidorTCP inSocket;
+    private ClienteTCP outSocket;
     
-    public Broker(){
-//        try {
-//            inSocket = new Socket("192.168.0.1", 123);//listening address and port
-//            outSocket = new Socket("192.168.0.1", 123);//server address and listening port
-//            processors = new ArrayList<Thread>();
-//        } catch (UnknownHostException ex) {
-//            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Broker.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    public Broker(ClienteTCP client) throws IOException{
+        inSocket = new ServidorTCP(this);
+        outSocket = client;
     }
     
     public void createClientSocket(Cliente cliente){
@@ -40,15 +33,8 @@ public class Broker {
         clientThread.start();
     }
     
-    public void processRequest(String xmlObject, int action){
-     switch(action){
-         case 1:
-//            agregardVoto(xmlObject);
-            break;
-         case 2:
-//             return obtenerDatos();
-             break;
-     }
+    public void processRequest(String xmlObject) throws IOException{
+        outSocket.enviarMensaje(xmlObject);
     }
     
     
@@ -58,12 +44,13 @@ public class Broker {
     public void getAvailableInstructions(){
         
     }
-    
-    public static void main(String[] args) {
-        Broker b = new Broker();
-        Broker a = new Broker();
-        b.createClientSocket(new Cliente());
-        a.createClientSocket(new Cliente());
-//        System.out.println("hi");
+
+
+    public ServidorTCP getInSocket() {
+        return inSocket;
+    }
+
+    public ClienteTCP getOutSocket() {
+        return outSocket;
     }
 }

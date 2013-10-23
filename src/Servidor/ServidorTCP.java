@@ -25,17 +25,21 @@ public class ServidorTCP {
             System.out.println("recibido");
             Socket conexionSocket = welcomeSocket.accept();
             DataInputStream recibido = new DataInputStream(conexionSocket.getInputStream());
+//            int accion = Integer.parseInt(mensajeRecibido.substring((mensajeRecibido.length()-1), mensajeRecibido.length()));
+//            mensajeRecibido = mensajeRecibido.substring(0, (mensajeRecibido.length()-1));
             mensajeRecibido = recibido.readUTF();
+//            processRequest(accion, mensajeRecibido);
             System.out.println("Mensaje Recibido");
 
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
         }
     }
-
-    public void enviarMensaje() {
+    
+    public void processRequest(int accion, String voto){
+        
     }
-
+    
     public void llamarAlServicio() throws FileNotFoundException, IOException {
         //revisar si va aquí proxyServidor
 

@@ -11,11 +11,15 @@ import javax.swing.JOptionPane;
 
 public class ServidorTCP {
 
+        
+    private Broker brokerInstance;
     private String mensajeRecibido;
     private ServerSocket welcomeSocket;
    
+    
 
-    public ServidorTCP() throws IOException {
+    public ServidorTCP(Broker b) throws IOException {
+       brokerInstance = b;
        welcomeSocket = new ServerSocket(6789);
     }
 
@@ -25,8 +29,10 @@ public class ServidorTCP {
             Socket conexionSocket = welcomeSocket.accept();
             DataInputStream recibido = new DataInputStream(conexionSocket.getInputStream());
             mensajeRecibido = recibido.readUTF();
+//            int accion = Integer.parseInt(mensajeRecibido.substring((mensajeRecibido.length()-1), mensajeRecibido.length()));
+//            mensajeRecibido = mensajeRecibido.substring(0, (mensajeRecibido.length()-1));
             System.out.println("Mensaje Recibido en el broker");
-//            broker.processRequest(xml, accion);
+            brokerInstance.processRequest(mensajeRecibido);
 
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(null, "Mensaje servidor" + excepcion.getMessage());
@@ -35,8 +41,8 @@ public class ServidorTCP {
 
     //Revisarsi va aquí
     public void enviarMensaje() throws UnknownHostException, IOException {
-        ClienteTCP cliente = new ClienteTCP();
-        cliente.enviarMensaje(mensajeRecibido);
+        ClienteTCP protocolo = new ClienteTCP();
+        protocolo.enviarMensaje(mensajeRecibido);
         
     }
 
@@ -47,17 +53,14 @@ public class ServidorTCP {
     }
 
     public static void main(String argv[]) throws Exception {
-        ServidorTCP servidorTCP = new ServidorTCP();
+//        ServidorTCP servidorTCP = new ServidorTCP();
+        Broker b = new Broker(new ClienteTCP());
        
 
 
         while (true) {
-            servidorTCP.recibirMensaje();
-            servidorTCP.enviarMensaje();
-
-//            capitalizedSentence = clientSentence.toUpperCase() + '\n';
-//
-//            outToClient.writeBytes(capitalizedSentence);
+            b.getInSocket().recibirMensaje();
+            b.getInSocket().enviarMensaje();
         }
     }
 }

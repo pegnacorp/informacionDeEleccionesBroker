@@ -29,7 +29,7 @@ public class ClienteTCP {
         Socket clientSocket = new Socket("localhost", 6789);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
            
-         outToServer.writeUTF(mensaje);
+         outToServer.writeUTF(mensaje + accion);
          clientSocket.close();
          
          
