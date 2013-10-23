@@ -4,7 +4,6 @@
  */
 package Cliente;
 
-import socket.*;
 import java.io.*;
 import java.net.*;
 import javax.swing.JOptionPane;
@@ -24,7 +23,7 @@ public class ClienteTCP {
          
     }
     
-    public void enviarMensaje(String mensaje) throws IOException{
+    public void enviarMensaje(String mensaje, int accion) throws IOException{
         System.out.println("enviado");
         try{
         Socket clientSocket = new Socket("localhost", 6789);

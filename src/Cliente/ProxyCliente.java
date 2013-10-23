@@ -46,6 +46,6 @@ public class ProxyCliente {
      * Método que enviará el mensaje al servidor *
      */
     public void enviarMensaje() throws IOException {
-        clientetcp.enviarMensaje(mensaje);
+        clientetcp.enviarMensaje(mensaje, 1);
     }
 }
