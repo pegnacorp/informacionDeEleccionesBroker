@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class ProxyServidor {
@@ -13,6 +14,8 @@ public class ProxyServidor {
     private ControaladorServidor control;
     private GraficaBarras graficaBarras;
     private ArrayList<Candidato> candidatos;
+    private Candidato candidato;
+    private boolean validarMensaje;
 
     public ProxyServidor() {
         control = new ControaladorServidor();
@@ -29,9 +32,8 @@ public class ProxyServidor {
     //Revisar la entrada de la variable
     public void convertirMensaje(String mensaje) throws FileNotFoundException, IOException {
 //        String mensajeRecibido;
-        Candidato candidato;
-        int accion = Integer.parseInt(mensaje.substring((mensaje.length()-1), mensaje.length()));
-        mensaje = mensaje.substring(0, (mensaje.length()-1));
+        int accion = Integer.parseInt(mensaje.substring((mensaje.length() - 1), mensaje.length()));
+        mensaje = mensaje.substring(0, (mensaje.length() - 1));
 
 
 //        Candidato candidato;
@@ -52,26 +54,33 @@ public class ProxyServidor {
         //Enviar a la vista
 
 
-        control.contabilizarVoto(candidato);
-        candidatos = control.darVotosContabilizados();
-        graficaBarras.actualizar(candidatos);
-
-
-
-
-//        for (int i = 0; i < candidatos.size(); i++) {
+        //        for (int i = 0; i < candidatos.size(); i++) {
 //            System.out.println(candidatos.get(i).getNombre());
 //            System.out.println(candidatos.get(i).getCantidadDeVotos());
 //        }
     }
-    
-    public void processRequest(int accion, Candidato c){
-        switch(accion){
+
+    private void enviarValidacionMensaje(boolean estadoMensaje) throws UnknownHostException, IOException {
+        ClienteTCP clienteTCP = new ClienteTCP();
+        if (estadoMensaje) {
+            clienteTCP.enviarMensaje("1");
+        } else {
+            clienteTCP.enviarMensaje("0");
+        }
+    }
+
+    public void processRequest(int accion, Candidato c) throws UnknownHostException, IOException {
+        switch (accion) {
             case 1:
-                System.out.println("acciom 1");
+                control.contabilizarVoto(candidato);
+                candidatos = control.darVotosContabilizados();
+                graficaBarras.actualizar(candidatos);
+                enviarValidacionMensaje(true);
+
                 break;
             default:
-                System.out.println("aqui estaria la ccion 2");
+                enviarValidacionMensaje(false);
+
         }
     }
 }

@@ -15,6 +15,7 @@ public class ServidorTCP {
     private Broker brokerInstance;
     private String mensajeRecibido;
     private ServerSocket welcomeSocket;
+
    
     
 
@@ -32,6 +33,7 @@ public class ServidorTCP {
 //            int accion = Integer.parseInt(mensajeRecibido.substring((mensajeRecibido.length()-1), mensajeRecibido.length()));
 //            mensajeRecibido = mensajeRecibido.substring(0, (mensajeRecibido.length()-1));
             System.out.println("Mensaje Recibido en el broker");
+            
             brokerInstance.processRequest(mensajeRecibido);
 
         } catch (Exception excepcion) {
@@ -41,16 +43,18 @@ public class ServidorTCP {
 
     //Revisarsi va aquí
     public void enviarMensaje() throws UnknownHostException, IOException {
-        ClienteTCP protocolo = new ClienteTCP();
-        protocolo.enviarMensaje(mensajeRecibido);
+        Broker broker = new Broker();
+         broker.processRequest(mensajeRecibido);
+//        ClienteTCP protocolo = new ClienteTCP();
+//        protocolo.enviarMensaje(mensajeRecibido);
         
     }
 
     public void llamarAlServicio() throws FileNotFoundException, IOException {
         //revisar si va aquí proxyServidor
-
-
     }
+     
+   
 
     public static void main(String argv[]) throws Exception {
 //        ServidorTCP servidorTCP = new ServidorTCP();

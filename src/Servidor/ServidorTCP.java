@@ -14,6 +14,7 @@ public class ServidorTCP {
     private String mensajeRecibido;
     private ProxyServidor proxyServidor;
     private ServerSocket welcomeSocket;
+        private boolean validarMensaje;
 
     public ServidorTCP() throws IOException {
         proxyServidor = new ProxyServidor();
@@ -36,7 +37,8 @@ public class ServidorTCP {
         }
     }
     
-    public void processRequest(int accion, String voto){
+    public void mandarValidacionServicio(){
+        
         
     }
     
